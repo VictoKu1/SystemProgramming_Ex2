@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include "myBank.h"
 void help();
 int main(){
     float amount;
