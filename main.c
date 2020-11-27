@@ -17,38 +17,45 @@ int main(){
             shut_down();
             break;
         case 'O':
-            printf("you are naw opening a new account \n your account number will be given to you \n");
+            printf("you are naw opening a new account \nyour account number will be given to you \n");
             printf("first you need to enter your first deposit\n");
             printf("please enter an amount : \n");
             scanf("%f",&amount);
+            getchar();
             open_new_acc(amount);
             break;
         case 'B':
             printf("for checking your balance : \n");
             printf("please enter an account number : \n");
             scanf("%d",&account_number);
+            getchar();
             check_balance(account_number);
             break;
         case 'D' :
             printf("for depositing money \n ");
             printf("please enter an account number : \n");
             scanf("%d",&account_number);
+            getchar();
             printf("please enter an amount : \n");
             scanf("%f",&amount);
+            getchar();
            deposit(account_number,amount);
             break;
         case'W':
             printf("for withdrawing money \n ");
             printf("please enter an account number : \n");
             scanf("%d",&account_number);
+            getchar();
             printf("please enter an amount : \n");
             scanf("%f",&amount);
+            getchar();
             withdrawal(account_number,amount);
             break;
         case 'C' :
             printf("for closing your account \n");
             printf("please enter an account number : \n");
             scanf("%d",&account_number);
+            getchar();
             close_acc(account_number);
             break;
         case 'P' :
@@ -58,6 +65,7 @@ int main(){
             printf("for applying intrest for all accounts \n");
             printf("please enter an amount :\n");
             scanf("%f",&amount);
+            getchar();
             add_intrest(amount);
             break;
         case 'H' :
@@ -66,6 +74,7 @@ int main(){
         default:
             printf("this commands doesnt exist \n");
             printf("for help enter : H\n");
+            printf("if inserting commands doesnt work press enter \n");
             break;
             }
     }
