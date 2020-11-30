@@ -1,8 +1,9 @@
 #include <stdio.h>
+#include <math.h>
 #include "myBank.h"
 void help();
 int main(){
-    float amount;
+    double amount;
     int account_number;
     char input = 'H' ;
     while ( input != 'E')
@@ -20,7 +21,8 @@ int main(){
             printf("you are naw opening a new account \nyour account number will be given to you \n");
             printf("first you need to enter your first deposit\n");
             printf("please enter an amount : \n");
-            scanf("%f",&amount);
+            scanf("%lf",&amount);
+            amount = round (amount * 100) / 100;
             getchar();
             open_new_acc(amount);
             break;
@@ -37,7 +39,8 @@ int main(){
             scanf("%d",&account_number);
             getchar();
             printf("please enter an amount : \n");
-            scanf("%f",&amount);
+            scanf("%lf",&amount);
+            amount = round (amount * 100) / 100;
             getchar();
            deposit(account_number,amount);
             break;
@@ -47,7 +50,8 @@ int main(){
             scanf("%d",&account_number);
             getchar();
             printf("please enter an amount : \n");
-            scanf("%f",&amount);
+            scanf("%lf",&amount);
+            amount = round (amount * 100) / 100;
             getchar();
             withdrawal(account_number,amount);
             break;
@@ -64,7 +68,8 @@ int main(){
         case 'I' :
             printf("for applying intrest for all accounts \n");
             printf("please enter an amount :\n");
-            scanf("%f",&amount);
+            scanf("%lf",&amount);
+            amount = round (amount * 100) / 100;
             getchar();
             add_intrest(amount);
             break;
@@ -91,4 +96,3 @@ void help(){
     printf(" the command P : print all open accounts and their balance \n input : .\n \n");
     printf(" the command E : close all accounts and stop running \n input : .\n ");
 }
-
