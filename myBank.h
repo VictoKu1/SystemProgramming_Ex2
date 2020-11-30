@@ -6,3 +6,4 @@ void close_acc(int account_number);
 void add_intrest(float intrest_rate);
 void print();
 void shut_down();
+int check_open(int account_number);
