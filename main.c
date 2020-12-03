@@ -3,7 +3,7 @@
 float roundf(float val);
 void help();
 int check_amount(int bool);
-int check_acc_numbet(int bool,int number);
+int check_acc_number(int bool,int number);
 int main(){
     float amount;
     int account_number;
@@ -28,13 +28,13 @@ int main(){
         case 'B':
             printf("Please enter account number: ");
             bool = scanf("%d",&account_number);
-            if(!check_acc_numbet(bool,account_number)){ break;}
+            if(!check_acc_number(bool,account_number)){ break;}
             check_balance(account_number);
             break;
         case 'D' :
             printf("Please enter account number: ");
             bool = scanf("%d",&account_number);
-            if(!check_acc_numbet(bool,account_number)){ break;}
+            if(!check_acc_number(bool,account_number)){ break;}
             printf("Please enter amount for deposit: ");
             bool = scanf("%f",&amount);
             if(!check_amount(bool)){ break;}
@@ -44,7 +44,7 @@ int main(){
         case'W':
             printf("Please enter account number: ");
             bool = scanf("%d",&account_number);
-            if(!check_acc_numbet(bool,account_number)){ break;}
+            if(!check_acc_number(bool,account_number)){ break;}
             printf("Please enter amount for deposit: ");
             bool = scanf("%f",&amount);
             if(!check_amount(bool)){ break;}
@@ -54,7 +54,7 @@ int main(){
         case 'C' :
             printf("Please enter account number: ");
            bool = scanf("%d",&account_number);
-            if(!check_acc_numbet(bool,account_number)){ break;}
+            if(!check_acc_number(bool,account_number)){ break;}
             close_acc(account_number);
             break;
         case 'P' :
@@ -91,7 +91,7 @@ int check_amount(int bool){
     }
     return bool;
 }
-int check_acc_numbet(int bool,int number){
+int check_acc_number(int bool,int number){
     if (!bool)
     {
         printf("Failed to read the account number\n");
