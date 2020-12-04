@@ -126,6 +126,7 @@ void shut_down()
 }
 
 //*This function checks if the given account number is legit and open .
+
 int check_open(int account_number)
 {
     int index = account_number - converter;
