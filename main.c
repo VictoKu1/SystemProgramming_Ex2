@@ -1,5 +1,5 @@
-#include <stdio.h>
 #include "myBank.h"
+
 float roundf(float val);
 void help();
 int check_amount(int bool);
@@ -8,6 +8,7 @@ int main(){
     float amount;
     int account_number;
     int bool;
+    init();
     char input = 'H' ;
     while ( input != 'E')
     {   
@@ -74,7 +75,14 @@ int main(){
     }
 return 0;
 }
-
+//* Inits the 50 bank accounts data base . 
+void init(){
+    for(int i =0 ; i<50;i++){
+        for(int j=0;j<2;j++){
+            accounts_list[i][j]=0;
+        }
+    }
+}
 void help(){
     printf("\n");
     printf("Please choose a transaction type:\nO-Open Account\nB-Balance Inquiry\nD-Deposit\nW-Withdrawal\nC-Close Account\nI-Interest\nP-Print\nE-Exit\n");
