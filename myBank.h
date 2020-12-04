@@ -11,7 +11,7 @@ void add_intrest(float intrest_rate);
 void print();
 void init(); //* Inits the 50 bank accounts data base .
 void shut_down();
-int check_open(int account_number);
-int check_input(float input);
+int check_open(int account_number,int situation);
+int check_input(float input,int situation);
 float accounts_list[50][2]; //*Account list structure : the first row represents if the account is open or closed, open account is 1 closed is 0, the second row represents the balance .
 #endif

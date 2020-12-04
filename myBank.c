@@ -4,7 +4,7 @@
 
 void open_new_acc(float amount)
 {
-    if (check_input(amount))
+    if (check_input(amount,0))
     {
         int index = 0;
         while (accounts_list[index][0] && index < 50)
@@ -24,7 +24,7 @@ void open_new_acc(float amount)
 
 void check_balance(int account_number)
 {
-    int index = check_open(account_number);
+    int index = check_open(account_number,0);
     if (index)
     {
         printf("The balance of account number %d is: %0.2f\n", index - 1 + converter, accounts_list[index - 1][1]);
@@ -35,13 +35,13 @@ void check_balance(int account_number)
 
 void deposit(int account_number, float amount)
 {
-    if (check_open(account_number))
+    if (check_open(account_number,1))
     {
-        if (check_input(amount))
+        if (check_input(amount,1))
         {
             int index = account_number - converter;
             accounts_list[index][1] = accounts_list[index][1] + amount;
-            check_balance(account_number);
+            printf("The new balance is: %0.2f\n",accounts_list[index][1]);
         }
     }
 }
@@ -50,15 +50,15 @@ void deposit(int account_number, float amount)
 
 void withdrawal(int account_number, float amount)
 {
-    if (check_open(account_number))
+    if (check_open(account_number,2))
     {
-        if (check_input(amount))
+        if (check_input(amount,2))
         {
             int index = account_number - converter;
             if (accounts_list[index][1] >= amount)
             {
                 accounts_list[index][1] = accounts_list[index][1] - amount;
-                check_balance(account_number);
+                printf("The new balance is: %0.2f\n",accounts_list[index][1]);
                 return;
             }
             printf("Not enough money in the account .\n");
@@ -83,7 +83,7 @@ void close_acc(int account_number)
     }
     accounts_list[index][1] = 0;
     accounts_list[index][0] = 0;
-    printf("Account was closed successfully .\n");
+    printf("Closed account number %d\n",account_number);
 }
 
 //*Adds each open account an ineterest rate - assumes the rate was chekced in the main.c section and assumes the rate is intrest_rate = x/100 .
@@ -127,22 +127,27 @@ void shut_down()
 
 //*This function checks if the given account number is legit and open .
 
-int check_open(int account_number)
+int check_open(int account_number,int situation)
 {
+    if (situation == 3)
+    {
+       return 1;
+    }
+    
     int index = account_number - converter;
     if (index < 0 || index > 49)
     {
         printf("Invalid account number.\n");
-        return -1;
+        return 0;
     }
     if (accounts_list[index][0] == 0.0)
     {
-        printf("This account is empty.\n");
+        printf("This account is closed\n");
         return 0;
     }
     return 1;
 }
-int check_input(float input)
+int check_input(float input,int situation)
 {
     if (input >= 0)
     {
@@ -150,7 +155,19 @@ int check_input(float input)
     }
     else
     {
-        printf("Invalid Amount .\n");
+        switch (situation)
+        {
+        case 0:
+            printf("Invalid Amount\n");
+            return 0;
+        case 1:
+            printf("Cannot deposit a negative amount\n");
+            return 0;
+        case 2:
+            return 1;
+        default:
+            break;
+        }
         return 0;
     }
 }
