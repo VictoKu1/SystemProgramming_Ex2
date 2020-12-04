@@ -3,17 +3,18 @@
 float roundf(float val);
 void help();
 int check_amount(int bool);
-int check_acc_number(int bool,int number);
-int main(){
+int check_acc_number(int bool, int number);
+int main()
+{
     float amount;
     int account_number;
     int bool;
     init();
-    char input = 'H' ;
-    while ( input != 'E')
-    {   
+    char input = 'H';
+    while (input != 'E')
+    {
         help();
-        scanf("%c",&input);
+        scanf("%c", &input);
         switch (input)
         {
         case 'E':
@@ -21,85 +22,116 @@ int main(){
             break;
         case 'O':
             printf("Please enter amount for deposit: ");
-            bool = scanf("%f",&amount);
-            if(!check_amount(bool)){ break;}
+            bool = scanf("%f", &amount);
+            if (!check_amount(bool))
+            {
+                break;
+            }
             amount = roundf(amount * 100) / 100;
             open_new_acc(amount);
             break;
         case 'B':
             printf("Please enter account number: ");
-            bool = scanf("%d",&account_number);
-            if(!check_acc_number(bool,account_number)){ break;}
+            bool = scanf("%d", &account_number);
+            if (!check_acc_number(bool, account_number))
+            {
+                break;
+            }
             check_balance(account_number);
             break;
-        case 'D' :
+        case 'D':
             printf("Please enter account number: ");
-            bool = scanf("%d",&account_number);
-            if(!check_acc_number(bool,account_number)){ break;}
+            bool = scanf("%d", &account_number);
+            if (!check_acc_number(bool, account_number))
+            {
+                break;
+            }
             printf("Please enter amount for deposit: ");
-            bool = scanf("%f",&amount);
-            if(!check_amount(bool)){ break;}
+            bool = scanf("%f", &amount);
+            if (!check_amount(bool))
+            {
+                break;
+            }
             amount = roundf(amount * 100) / 100;
-           deposit(account_number,amount);
+            deposit(account_number, amount);
             break;
-        case'W':
+        case 'W':
             printf("Please enter account number: ");
-            bool = scanf("%d",&account_number);
-            if(!check_acc_number(bool,account_number)){ break;}
+            bool = scanf("%d", &account_number);
+            if (!check_acc_number(bool, account_number))
+            {
+                break;
+            }
             printf("Please enter amount for deposit: ");
-            bool = scanf("%f",&amount);
-            if(!check_amount(bool)){ break;}
+            bool = scanf("%f", &amount);
+            if (!check_amount(bool))
+            {
+                break;
+            }
             amount = roundf(amount * 100) / 100;
-            withdrawal(account_number,amount);
+            withdrawal(account_number, amount);
             break;
-        case 'C' :
+        case 'C':
             printf("Please enter account number: ");
-           bool = scanf("%d",&account_number);
-            if(!check_acc_number(bool,account_number)){ break;}
+            bool = scanf("%d", &account_number);
+            if (!check_acc_number(bool, account_number))
+            {
+                break;
+            }
             close_acc(account_number);
             break;
-        case 'P' :
+        case 'P':
             print();
             break;
-        case 'I' :
+        case 'I':
             printf("Please enter amount for deposit: ");
-            bool = scanf("%f",&amount);
-            if(!check_amount(bool)){ break;}
+            bool = scanf("%f", &amount);
+            if (!check_amount(bool))
+            {
+                break;
+            }
             amount = roundf(amount * 100) / 100;
             add_intrest(amount);
             break;
         default:
             printf("Invalid transaction type\n");
             break;
-            }
+        }
     }
-return 0;
+    return 0;
 }
-//* Inits the 50 bank accounts data base . 
-void init(){
-    for(int i =0 ; i<50;i++){
-        for(int j=0;j<2;j++){
-            accounts_list[i][j]=0;
+//* Inits the 50 bank accounts data base .
+void init()
+{
+    for (int i = 0; i < 50; i++)
+    {
+        for (int j = 0; j < 2; j++)
+        {
+            accounts_list[i][j] = 0;
         }
     }
 }
-void help(){
+void help()
+{
     printf("\n");
     printf("Please choose a transaction type:\nO-Open Account\nB-Balance Inquiry\nD-Deposit\nW-Withdrawal\nC-Close Account\nI-Interest\nP-Print\nE-Exit\n");
 }
-float roundf(float val){
-    int temp = (int) val;
-    val = temp*1.0;
+float roundf(float val)
+{
+    int temp = (int)val;
+    val = temp * 1.0;
     return val;
 }
-int check_amount(int bool){
+int check_amount(int bool)
+{
     if (!bool)
     {
         printf("Failed to read the amount\n");
     }
     return bool;
 }
-int check_acc_number(int bool,int number){
+int check_acc_number(int bool, int number)
+{
     if (!bool)
     {
         printf("Failed to read the account number\n");
@@ -108,4 +140,3 @@ int check_acc_number(int bool,int number){
     bool = check_open(number);
     return bool;
 }
-
