@@ -132,16 +132,15 @@ void shut_down()
 
 int check_open(int account_number,int situation)
 {
-    if (situation == 3)
-    {
-       return 1;
-    }
-    
     int index = account_number - converter;
     if (index < 0 || index > 49)
     {
         printf("Invalid account number\n");
         return 0;
+    }
+    if (situation == 3)
+    {
+       return 1;
     }
     if (accounts_list[index][0] == 0.0)
     {
