@@ -9,13 +9,13 @@ void open_new_acc(float amount)
         int index = 0;
         while (accounts_list[index][0] && index < 50)
         {
-            if (index >= 50)
+            index++;
+        }
+         if (index >= 50)
             {
                 printf("No free accounts were found.\n");
                 return;
             }
-            index++;
-        }
         accounts_list[index][0] = 1;
         accounts_list[index][1] = amount;
         printf("New account number is: %d\n", (int)(index + converter));
