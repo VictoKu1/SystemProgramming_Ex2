@@ -1,5 +1,5 @@
 #include "myBank.h"
-#define debug
+//#define debug
 float roundf(float val);
 void help();
 int check_amount(int bool);
@@ -9,12 +9,13 @@ int main()
     float amount;
     int account_number;
     int bool;
+    int interest_rate;
     init();
     char input = 'H';
     while (input != 'E')
     {
         help();
-        scanf("%c", &input);
+        scanf(" %c", &input);
         switch (input)
         {
         case 'E':
@@ -22,7 +23,7 @@ int main()
             break;
         case 'O':
             printf("Please enter amount for deposit: ");
-            bool = scanf("%f", &amount);
+            bool = scanf(" %f", &amount);
             if (!check_amount(bool))
             {
                 break;
@@ -32,7 +33,7 @@ int main()
             break;
         case 'B':
             printf("Please enter account number: ");
-            bool = scanf("%d", &account_number);
+            bool = scanf(" %d", &account_number);
             if (!check_acc_number(bool, account_number,0))
             {
                 break;
@@ -41,13 +42,13 @@ int main()
             break;
         case 'D':
             printf("Please enter account number: ");
-            bool = scanf("%d", &account_number);
+            bool = scanf(" %d", &account_number);
             if (!check_acc_number(bool, account_number,1))
             {
                 break;
             }
             printf("Please enter the amount to deposit: ");
-            bool = scanf("%f", &amount);
+            bool = scanf(" %f", &amount);
             if (!check_amount(bool))
             {
                 break;
@@ -57,13 +58,13 @@ int main()
             break;
         case 'W':
             printf("Please enter account number: ");
-            bool = scanf("%d", &account_number);
+            bool = scanf(" %d", &account_number);
             if (!check_acc_number(bool, account_number,2))
             {
                 break;
             }
             printf("Please enter amount to withdraw: ");
-            bool = scanf("%f", &amount);
+            bool = scanf(" %f", &amount);
             if (!check_amount(bool))
             {
                 break;
@@ -73,7 +74,7 @@ int main()
             break;
         case 'C':
             printf("Please enter account number: ");
-            bool = scanf("%d", &account_number);
+            bool = scanf(" %d", &account_number);
             if (!check_acc_number(bool, account_number,3))
             {
                 break;
@@ -84,14 +85,15 @@ int main()
             print();
             break;
         case 'I':
-            printf("Please enter amount for deposit: ");
-            bool = scanf("%f", &amount);
+            printf("Please enter interest rate: ");
+            bool = scanf(" %d", &interest_rate);
             if (!bool)
             {
                 printf("Failed to read the interest rate\n");
                 break;
             }
-            amount = roundf(amount * 100) / 100;
+            amount = (float) interest_rate;
+            amount = roundf(amount) / 100;
             add_intrest(amount);
             break;
         default:

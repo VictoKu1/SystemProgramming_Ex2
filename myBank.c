@@ -27,7 +27,7 @@ void check_balance(int account_number)
     int index = check_open(account_number,0);
     if (index)
     {
-        printf("The balance of account number %d is: %0.2f\n", index - 1 + converter, accounts_list[index - 1][1]);
+        printf("The balance of account number %d is: %0.2f\n", account_number, accounts_list[account_number - converter][1]);
     }
 }
 
@@ -61,7 +61,7 @@ void withdrawal(int account_number, float amount)
                 printf("The new balance is: %0.2f\n",accounts_list[index][1]);
                 return;
             }
-            printf("Not enough money in the account .\n");
+            printf("Cannot withdraw more than the balance\n");
         }
     }
 }
@@ -90,12 +90,15 @@ void close_acc(int account_number)
 
 void add_intrest(float intrest_rate)
 {
-    for (int i = 0; i < 50; i++)
+    if (check_input(intrest_rate,3))
+    {
+        for (int i = 0; i < 50; i++)
     {
         if (accounts_list[i][0])
         {
             accounts_list[i][1] = accounts_list[i][1] + (accounts_list[i][1] * intrest_rate);
         }
+    }
     }
 }
 
@@ -137,7 +140,7 @@ int check_open(int account_number,int situation)
     int index = account_number - converter;
     if (index < 0 || index > 49)
     {
-        printf("Invalid account number.\n");
+        printf("Invalid account number\n");
         return 0;
     }
     if (accounts_list[index][0] == 0.0)
@@ -165,6 +168,9 @@ int check_input(float input,int situation)
             return 0;
         case 2:
             return 1;
+        case 3:
+            printf("Invalid interest rate\n");
+            return 0;
         default:
             break;
         }
